@@ -1,0 +1,53 @@
+.story-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .story-content {
+    width: 80%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .story-image {
+    width: 400px; /* 가로 70px */
+    height: 400px; /* 세로 70px */
+    object-fit: contain; /* 이미지가 잘리지 않고 전체가 보이도록 */
+    border-radius: 5px; /* 모서리를 둥글게 */
+  }
+  
+  .story-text {
+    margin-top: 20px;
+  }
+  
+  .story-text h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .story-text p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  .audio-button {
+    margin-top: 10px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .audio-button:hover {
+    background: #45a049;
+  }
+  
