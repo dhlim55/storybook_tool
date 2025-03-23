@@ -13,7 +13,7 @@ const StoryBook = () => {
   }, [id]);
 
   if (!story) {
-    return <div>스토리를 찾을 수 없습니다.</div>;
+    return <div>스토리를 찾을 수 없습니다!</div>;
   }
 
   return (
