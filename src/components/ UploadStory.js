@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import "./UploadStory.css";
 
-// 폰트 적용을 위한 전역 스타일 추가
 const GlobalStyles = () => {
   return (
     <style>
@@ -58,16 +58,16 @@ const UploadStory = ({ onUpload }) => {
   return (
     <>
       <GlobalStyles />
-      <div style={styles.container}>
+      <div className="container">
         {/* 왼쪽 네비게이션 바 */}
-        <nav style={styles.navBar}>
-          <h1 style={styles.logo}>StoryWeaver</h1>
-          <ul style={styles.storyList}>
+        <nav className="navBar">
+          <h1 className="logo">StoryWeaver</h1>
+          <ul className="storyList">
             {stories.length === 0 ? (
-              <p style={styles.emptyText}>동화가 없습니다.</p>
+              <p className="emptyText">동화가 없습니다.</p>
             ) : (
               stories.map((story, index) => (
-                <li key={index} style={styles.storyItem}>
+                <li key={index} className="storyItem">
                   {story.title}
                 </li>
               ))
@@ -76,179 +76,57 @@ const UploadStory = ({ onUpload }) => {
         </nav>
 
         {/* 오른쪽 입력 폼 */}
-        <div style={styles.mainContent}>
-          <h2 style={styles.heading}>새로운 동화 추가</h2>
+        <div className="mainContent">
+          <h2 className="heading">새로운 동화 추가</h2>
           <input
             type="text"
             placeholder="제목"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            style={styles.input}
+            className="input"
           />
           <textarea
             placeholder="내용"
             value={text}
             onChange={(e) => setText(e.target.value)}
-            style={styles.textarea}
+            className="textarea"
           />
-          
+
           {/* 이미지 업로드 */}
-          <label htmlFor="imageUpload" style={styles.fileLabel}>
+          <label htmlFor="imageUpload" className="fileLabel">
             Image File Upload
             <input
               type="file"
               accept="image/*"
               id="imageUpload"
               onChange={handleImageUpload}
-              style={styles.fileInput}
+              className="fileInput"
             />
           </label>
 
           {/* 업로드된 이미지 미리보기 */}
-          {image && <img src={image} alt="업로드된 이미지" style={styles.previewImage} />}
+          {image && <img src={image} alt="업로드된 이미지" className="previewImage" />}
 
           {/* 오디오 업로드 */}
-          <label htmlFor="audioUpload" style={styles.fileLabel}>
+          <label htmlFor="audioUpload" className="fileLabel">
             Audio File Upload
             <input
               type="file"
               accept="audio/*"
               id="audioUpload"
               onChange={handleAudioUpload}
-              style={styles.fileInput}
+              className="fileInput"
             />
           </label>
 
           {/* 업로드된 오디오 미리보기 */}
-          {audio && <audio controls src={audio} style={styles.audioPreview}></audio>}
+          {audio && <audio controls src={audio} className="audioPreview"></audio>}
 
-          <button onClick={handleSubmit} style={styles.button}>완성된 동화 보기</button>
+          <button onClick={handleSubmit} className="button">완성된 동화 보기</button>
         </div>
       </div>
     </>
   );
-};
-
-// 스타일 정의
-const styles = {
-  container: {
-    display: "flex",
-    width: "100vw",
-    height: "100vh",
-  },
-  navBar: {
-    width: "250px",
-    backgroundColor: "#54BD95",
-    color: "#fff",
-    padding: "20px",
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: "column",
-  },
-  logo: {
-    fontSize: "35px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    fontFamily: "'GowunBatang-Regular', serif",
-  },
-  storyList: {
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
-  },
-  emptyText: {
-    color: "#ddd",
-    fontSize: "14px",
-  },
-  storyItem: {
-    padding: "10px",
-    backgroundColor: "#0056b3",
-    borderRadius: "5px",
-    marginBottom: "5px",
-    cursor: "pointer",
-    textAlign: "center",
-    fontFamily: "'GowunBatang-Regular', serif",
-  },
-  mainContent: {
-    flex: 1,
-    padding: "30px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  heading: {
-    fontSize: "24px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    fontFamily: "'GowunBatang-Regular', serif",
-  },
-  input: {
-    width: "100%",
-    maxWidth: "500px",
-    padding: "12px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    fontSize: "16px",
-    marginBottom: "10px",
-    boxSizing: "border-box",
-    fontFamily: "'GowunBatang-Regular', serif",
-  },
-  textarea: {
-    width: "100%",
-    maxWidth: "500px",
-    height: "150px",
-    padding: "12px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    fontSize: "16px",
-    marginBottom: "10px",
-    resize: "none",
-    boxSizing: "border-box",
-    fontFamily: "'GowunBatang-Regular', serif",
-  },
-  fileLabel: {
-    display: "block",
-    width: "100%",
-    maxWidth: "500px",
-    padding: "12px",
-    backgroundColor: "#54BD95",
-    color: "#000",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "16px",
-    textAlign: "center",
-    marginBottom: "10px",
-    boxSizing: "border-box",
-    
-  },
-  fileInput: {
-    display: "none",
-  },
-  previewImage: {
-    width: "100%",
-    maxWidth: "300px",
-    marginTop: "10px",
-    borderRadius: "5px",
-  },
-  audioPreview: {
-    marginTop: "10px",
-    width: "100%",
-    maxWidth: "400px",
-  },
-  button: {
-    width: "100%",
-    maxWidth: "500px",
-    padding: "14px",
-    backgroundColor: "#54BD95",
-    color: "#fff",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "18px",
-    marginTop: "10px",
-    boxSizing: "border-box",
-    fontFamily: "'GowunBatang-Regular', serif",
-  },
 };
 
 export default UploadStory;
