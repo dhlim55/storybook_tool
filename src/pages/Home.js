@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import storiesData from "../data/stories";
 import UploadStory from "../components/ UploadStory";
+import NavBar from "../components/NavBar";
+import "../components/UploadStory.css"; // container, navBar, mainContent 스타일 포함
 
 const Home = () => {
   const [stories, setStories] = useState(() => {
@@ -17,21 +18,21 @@ const Home = () => {
     const newStoryData = {
       id: stories.length + 1,
       title: newStory.title,
-      pages: [{ text: newStory.text, image: newStory.image, audio: newStory.audio }],
+      pages: [
+        {
+          text: newStory.text,
+          image: newStory.image,
+          audio: newStory.audio,
+        },
+      ],
     };
     setStories([...stories, newStoryData]);
   };
 
   return (
-    <div>
+    <div className="container">
+      <NavBar stories={stories} />
       <UploadStory onUpload={handleUpload} />
-      <ul>
-        {stories.map((story) => (
-          <li key={story.id}>
-            <Link to={`/storybook/${story.id}`}>{story.title}</Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

@@ -59,21 +59,6 @@ const UploadStory = ({ onUpload }) => {
     <>
       <GlobalStyles />
       <div className="container">
-        {/* 왼쪽 네비게이션 바 */}
-        <nav className="navBar">
-          <h1 className="logo">StoryWeaver</h1>
-          <ul className="storyList">
-            {stories.length === 0 ? (
-              <p className="emptyText">동화가 없습니다.</p>
-            ) : (
-              stories.map((story, index) => (
-                <li key={index} className="storyItem">
-                  {story.title}
-                </li>
-              ))
-            )}
-          </ul>
-        </nav>
 
         {/* 오른쪽 입력 폼 */}
         <div className="mainContent">
