@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = ({ stories }) => {
   return (
@@ -10,7 +11,9 @@ const NavBar = ({ stories }) => {
         ) : (
           stories.map((story, index) => (
             <li key={index} className="storyItem">
-              {story.title}
+                <Link to={`/storybook/${story.id}`} style={{ color: 'white', textDecoration: 'none' }}>
+                    {story.title}
+                </Link>
             </li>
           ))
         )}

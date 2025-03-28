@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import storiesData from "../data/stories";
 import UploadStory from "../components/ UploadStory";
+import NavBar from "../components/NavBar";
+import "../components/UploadStory.css";
 
 const Home = () => {
   const [stories, setStories] = useState(() => {
@@ -17,21 +18,16 @@ const Home = () => {
     const newStoryData = {
       id: stories.length + 1,
       title: newStory.title,
-      pages: [{ text: newStory.text, image: newStory.image, audio: newStory.audio }],
+      pages: newStory.pages, // ✅ 전체 페이지 배열을 그대로 넣기!
     };
     setStories([...stories, newStoryData]);
   };
+  
 
   return (
-    <div>
+      <div className="container">
+       <NavBar stories={stories} />
       <UploadStory onUpload={handleUpload} />
-      <ul>
-        {stories.map((story) => (
-          <li key={story.id}>
-            <Link to={`/storybook/${story.id}`}>{story.title}</Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };

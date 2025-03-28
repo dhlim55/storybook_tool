@@ -1,28 +1,46 @@
 import React, { useEffect, useRef } from "react";
-import './StoryPage.css'
+import './StoryPage.css';
 
-const StoryPage = ({ title, text, image, audio }) => {
+const StoryPage = ({ pages }) => {
+  return (
+    <div className="story-page">
+      {pages.map((page, index) => (
+        <PageSection key={index} index={index} {...page} />
+      ))}
+    </div>
+  );
+};
+
+const PageSection = ({ text, image, audio, index }) => {
   const audioRef = useRef(null);
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.play();
+      //audioRef.current.play();
     }
   }, [audio]);
 
   return (
-    <div className="story-page">
+    <div className="page-section">
+      <h2>{index + 1}장</h2>
       <div className="story-content">
-        <img className="story-image" src={image} alt="Story scene" />
+        <img className="story-image" src={image} alt={`Page ${index + 1}`} />
         <div className="story-text">
-          <h2>{title}</h2>
           <p>{text}</p>
-          <button className="audio-button" onClick={() => audioRef.current.play()}>
-            🔊
-          </button>
-          <audio ref={audioRef} src={audio} />
+          {audio && (
+            <>
+              <button
+                className="audio-button"
+                onClick={() => audioRef.current.play()}
+              >
+                🔊 효과음 재생
+              </button>
+              <audio ref={audioRef} src={audio} />
+            </>
+          )}
         </div>
       </div>
+      <hr className="page-divider" />
     </div>
   );
 };

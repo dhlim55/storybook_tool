@@ -19,11 +19,10 @@ const StoryBook = () => {
   return (
     <div className="storybook-container">
       <h1>{story.title}</h1>
-      {story.pages.map((page, index) => (
-        <StoryPage key={index} {...page} />
-      ))}
+      <StoryPage pages={story.pages} /> {/* ✅ 전체 배열을 한 번에 넘김 */}
     </div>
   );
+  
 };
 
 export default StoryBook;

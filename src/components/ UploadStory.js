@@ -24,15 +24,26 @@ const GlobalStyles = () => {
 
 const UploadStory = ({ onUpload }) => {
   const [title, setTitle] = useState("");
+  const [text1, setText1] = useState("");
+  const [text2, setText2] = useState("");
+  const [text3, setText3] = useState("");
+  const [image1, setImage1] = useState(null);
+  const [image2, setImage2] = useState(null);
+  const [image3, setImage3] = useState(null);
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [audio, setAudio] = useState(null);
   const [stories, setStories] = useState([]);
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = (e, page) => {
     const file = e.target.files[0];
-    setImage(URL.createObjectURL(file));
+    const url = URL.createObjectURL(file);
+  
+    if (page === 1) setImage1(url);
+    if (page === 2) setImage2(url);
+    if (page === 3) setImage3(url);
   };
+  
 
   const handleAudioUpload = (e) => {
     const file = e.target.files[0];
@@ -40,44 +51,50 @@ const UploadStory = ({ onUpload }) => {
   };
 
   const handleSubmit = () => {
-    if (title && text && image && audio) {
-      const newStory = { title, text, image, audio };
-      setStories([...stories, newStory]); // 목록 업데이트
-      onUpload(newStory);
-
-      // 입력 필드 초기화
-      setTitle("");
-      setText("");
-      setImage(null);
-      setAudio(null);
-    } else {
-      alert("모든 항목을 입력해주세요!");
+    if (!title || !audio) {
+      alert("제목과 오디오는 필수입니다.");
+      return;
     }
+  
+    const pages = [];
+  
+    if (text1 && image1) pages.push({ text: text1, image: image1, audio });
+    if (text2 && image2) pages.push({ text: text2, image: image2, audio });
+    if (text3 && image3) pages.push({ text: text3, image: image3, audio });
+  
+    if (pages.length === 0) {
+      alert("최소한 한 장 이상 입력해주세요.");
+      return;
+    }
+  
+    
+    const newStory = {
+      id: Date.now(),
+      title,
+      pages,
+    };
+  
+    const saved = JSON.parse(localStorage.getItem("stories")) || [];
+    const updated = [...saved, newStory];
+    localStorage.setItem("stories", JSON.stringify(updated));
+  
+    onUpload(newStory);
+  
+    // 초기화
+    setTitle("");
+    setText1(""); setText2(""); setText3("");
+    setImage1(null); setImage2(null); setImage3(null);
+    setAudio(null);
   };
-
+  
   return (
     <>
       <GlobalStyles />
       <div className="container">
-        {/* 왼쪽 네비게이션 바 */}
-        <nav className="navBar">
-          <h1 className="logo">StoryWeaver</h1>
-          <ul className="storyList">
-            {stories.length === 0 ? (
-              <p className="emptyText">동화가 없습니다.</p>
-            ) : (
-              stories.map((story, index) => (
-                <li key={index} className="storyItem">
-                  {story.title}
-                </li>
-              ))
-            )}
-          </ul>
-        </nav>
 
         {/* 오른쪽 입력 폼 */}
         <div className="mainContent">
-          <h2 className="heading">새로운 동화 추가</h2>
+        <h2 className="heading">새로운 동화 추가</h2>
           <input
             type="text"
             placeholder="제목"
@@ -85,24 +102,66 @@ const UploadStory = ({ onUpload }) => {
             onChange={(e) => setTitle(e.target.value)}
             className="input"
           />
+
+        {/* 1장 */}
+        <div className="pageBlock">
           <textarea
-            placeholder="내용"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            placeholder="1장 내용"
+            value={text1}
+            onChange={(e) => setText1(e.target.value)}
             className="textarea"
           />
-
-          {/* 이미지 업로드 */}
-          <label htmlFor="imageUpload" className="fileLabel">
-            Image File Upload
+          <label htmlFor="imageUpload1" className="fileLabel">
+            1장 이미지 업로드
             <input
               type="file"
               accept="image/*"
-              id="imageUpload"
-              onChange={handleImageUpload}
+              id="imageUpload1"
+              onChange={(e) => handleImageUpload(e, 1)}
               className="fileInput"
             />
           </label>
+          {image1 && <img src={image1} alt="1장 이미지" className="previewImage" />}
+        </div>
+
+
+        {/* 2장 */}
+        <textarea
+          placeholder="2장 내용"
+          value={text2}
+          onChange={(e) => setText2(e.target.value)}
+          className="textarea"
+        />
+          <label htmlFor="imageUpload2" className="fileLabel">
+            2장 이미지 업로드
+            <input
+              type="file"
+              accept="image/*"
+              id="imageUpload2"
+              onChange={(e) => handleImageUpload(e, 2)}
+              className="fileInput"
+          />
+          </label>
+          {image2 && <img src={image2} alt="2장 이미지" className="previewImage" />}
+
+        {/* 3장 */}
+        <textarea
+          placeholder="3장 내용"
+          value={text3}
+          onChange={(e) => setText3(e.target.value)}
+          className="textarea"
+        />
+        <label htmlFor="imageUpload3" className="fileLabel">
+          3장 이미지 업로드
+          <input
+            type="file"
+            accept="image/*"
+            id="imageUpload3"
+            onChange={(e) => handleImageUpload(e, 3)}
+            className="fileInput"
+        />
+        </label>
+        {image3 && <img src={image3} alt="3장 이미지" className="previewImage" />}
 
           {/* 업로드된 이미지 미리보기 */}
           {image && <img src={image} alt="업로드된 이미지" className="previewImage" />}
@@ -130,3 +189,4 @@ const UploadStory = ({ onUpload }) => {
 };
 
 export default UploadStory;
+
