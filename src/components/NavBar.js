@@ -18,7 +18,7 @@ const NavBar = ({ stories }) => {
         ) : (
           sortedStories.map((story, index) => (
             <li key={index} className="storyItem">
-              <Link to={`/storybook/${story.id}`} style={{ color: 'white'}}>
+              <Link to={`/storybook/${story.id}`}>
                 {story.title}
               </Link>
             </li>
