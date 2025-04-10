@@ -1,48 +1,113 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef, useState } from "react";
 import './StoryPage.css';
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
-const StoryPage = ({ pages }) => {
-  return (
-    <div className="story-page">
-      {pages.map((page, index) => (
-        <PageSection key={index} index={index} {...page} />
-      ))}
-    </div>
-  );
-};
-
-const PageSection = ({ text, image, audio, index }) => {
+const StoryPage = ({ pages, title }) => {
+  const [currentPage, setCurrentPage] = useState(0);
   const audioRef = useRef(null);
 
-  useEffect(() => {
-    if (audioRef.current) {
-      //audioRef.current.play();
+  const currentAudio = pages[currentPage]?.audio;
+
+  const handleAudioClick = () => {
+    const audioEl = audioRef.current;
+    if (!audioEl) return;
+
+    if (audioEl.paused) {
+      audioEl.play().catch((err) => {
+        console.warn("재생 실패:", err.message);
+      });
+    } else {
+      audioEl.pause();
     }
-  }, [audio]);
+  };
 
   return (
-    <div className="page-section">
-      <h2>{index + 1}장</h2>
-      <div className="story-content">
-        <img className="story-image" src={image} alt={`Page ${index + 1}`} />
-        <div className="story-text">
-          <p>{text}</p>
-          {audio && (
-            <>
-              <button
-                className="audio-button"
-                onClick={() => audioRef.current.play()}
-              >
-                🔊 효과음 재생
-              </button>
-              <audio ref={audioRef} src={audio} />
-            </>
-          )}
-        </div>
+    <div className="story-page book-view">
+      <div className="story-title-container">
+        <h1 className="story-title">{title}</h1>
       </div>
-      <hr className="page-divider" />
+      <SwitchTransition>
+        <CSSTransition
+          key={currentPage}
+          timeout={300}
+          classNames="slide"
+          >
+      <PageSection
+        index={currentPage}
+        {...pages[currentPage]}
+        currentPage={currentPage}
+        totalPages={pages.length}
+        setCurrentPage={setCurrentPage}
+      />
+      </CSSTransition>
+      </SwitchTransition>
     </div>
   );
 };
 
+const PageSection = ({ text, image, audio, index, currentPage, totalPages, setCurrentPage }) => {
+  const audioRef = useRef(null);
+
+  const handleAudioClick = () => {
+    const audioEl = audioRef.current;
+    if (!audioEl) return;
+
+    if (audioEl.paused) {
+      audioEl.play().catch((err) => {
+        console.warn("재생 실패:", err.message);
+      });
+    } else {
+      audioEl.pause();
+    }
+  };
+
+  const goPrev = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 1);
+  };
+
+  const goNext = () => {
+    if (currentPage < totalPages - 1) setCurrentPage(currentPage + 1);
+  };
+
+  return (
+    <div className="book-spread">
+      {/* 왼쪽 페이지 */}
+      <div className="page left-page">
+        <img className="story-image" src={image} alt={`Page ${index + 1}`} />
+      </div>
+
+      {/* 오른쪽 페이지 */}
+      <div className="page right-page">
+        <h2>{index + 1}장</h2>
+        <p className="story-text">{text}</p>
+
+        {audio && (
+          <>
+            <button className="audio-button" onClick={handleAudioClick}>
+              🔊 효과음 재생
+            </button>
+            <audio ref={audioRef} src={audio} />
+          </>
+        )}
+
+        <div className="navigation-buttons">
+          <button onClick={goPrev} disabled={currentPage === 0}>
+            ⬅ 이전
+          </button>
+
+          <span className="page-indicator">
+            {currentPage + 1} / {totalPages}
+          </span>
+
+          <button onClick={goNext} disabled={currentPage === totalPages - 1}>
+            다음 ➡
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
 export default StoryPage;
+

@@ -2,6 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import StoryPage from "../components/StoryPage";
 
+const GlobalStyles = () => {
+  return (
+    <style>
+      {`
+        @font-face {
+          font-family: 'GowunBatang-Regular';
+          src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+        body {
+          font-family: 'GowunBatang-Regular', serif;
+          margin: 0;
+          padding: 0;
+          background-color: #f9f9f9;
+        }
+      `}
+    </style>
+  );
+};
+
+
 const StoryBook = () => {
   const { id } = useParams();
   const [story, setStory] = useState(null);
@@ -18,8 +40,9 @@ const StoryBook = () => {
 
   return (
     <div className="storybook-container">
-      <h1>{story.title}</h1>
-      <StoryPage pages={story.pages} /> {/* ✅ 전체 배열을 한 번에 넘김 */}
+      <GlobalStyles />
+      <h1 style={{ textAlign: "center" }}>{story.title}</h1>
+      <StoryPage pages={story.pages} />
     </div>
   );
   

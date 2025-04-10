@@ -59,8 +59,8 @@ const UploadStory = ({ onUpload }) => {
     const pages = [];
   
     if (text1 && image1) pages.push({ text: text1, image: image1, audio });
-    if (text2 && image2) pages.push({ text: text2, image: image2, audio });
-    if (text3 && image3) pages.push({ text: text3, image: image3, audio });
+    if (text2 && image2) pages.push({ text: text2, image: image2,});
+    if (text3 && image3) pages.push({ text: text3, image: image3 });
   
     if (pages.length === 0) {
       alert("최소한 한 장 이상 입력해주세요.");
@@ -168,7 +168,7 @@ const UploadStory = ({ onUpload }) => {
 
           {/* 오디오 업로드 */}
           <label htmlFor="audioUpload" className="fileLabel">
-            Audio File Upload
+            효과음 파일 업로드
             <input
               type="file"
               accept="audio/*"

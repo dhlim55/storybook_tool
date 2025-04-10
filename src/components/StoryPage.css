@@ -1,8 +1,13 @@
+.story-title {
+  font-family: 'GowunBatang-Regular', serif;
+}
+
 .story-page {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    font-family: 'GowunBatang-Regular', serif;
   }
   
   .story-content {
@@ -12,6 +17,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    font-family: 'GowunBatang-Regular', serif;
   }
   
   .story-image {
@@ -23,18 +29,21 @@
   
   .story-text {
     margin-top: 20px;
+    font-family: 'GowunBatang-Regular', serif;
   }
   
   .story-text h2 {
     font-size: 24px;
     font-weight: bold;
     color: #333;
+    font-family: 'GowunBatang-Regular', serif;
   }
   
   .story-text p {
     font-size: 18px;
     line-height: 1.6;
     color: #555;
+    font-family: 'GowunBatang-Regular', serif;
   }
   
   .audio-button {
@@ -45,9 +54,127 @@
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'GowunBatang-Regular', serif;
   }
   
   .audio-button:hover {
     background: #45a049;
   }
+  .navigation-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 20px;
+  }
+  
+  .page-indicator {
+    font-weight: bold;
+  }
+  /* 애니메이션 정의 */
+.slide-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+.slide-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 300ms ease;
+}
+.slide-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.slide-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 300ms ease;
+}
+.book-spread {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 1000px;
+  aspect-ratio: 16/9;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.page {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.left-page {
+  background-color: #f4f4f4;
+  border-right: 1px solid #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-page img.story-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+}
+
+.right-page {
+  background-color: #fffdf6;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.story-text {
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-indicator {
+  font-weight: bold;
+}
+.story-title-container {
+  display: flex;
+  justify-content: center;     /* ✅ 가운데 정렬 */
+  align-items: center;
+  gap: 16px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;  
+}
+
+.story-title {
+  font-family: 'GowunBatang-Regular', serif;
+  font-size: 2em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.audio-button {
+  font-size: 1em;
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+
+  
   
