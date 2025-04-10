@@ -138,4 +138,34 @@
     flex-direction: column;
     align-items: center;
   }
+
+.sectionTitle {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+  
+.storyList {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+.storyItem::before {
+    color: white;
+    font-weight: bold;
+  }
+  
+.storyItem a {
+    color: white;
+    text-decoration: none; /* 기본 밑줄 제거 */
+    font-size: 14px;
+  }
+  
+.storyItem a:hover {
+    text-decoration: underline;
+    color: #ffd700; /* 노란색으로 변경 */
+    transition: color;
+  }
   
