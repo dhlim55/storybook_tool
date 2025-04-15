@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
 /* 전체 컨테이너 */
 .container {
     display: flex;
@@ -7,6 +14,7 @@
 
 /* 왼쪽 네비게이션 바 */
 .navBar {
+    font-family: 'Pretendard-Regular', sans-serif;
     width: 250px;
     background-color: #54BD95;
     color: #fff;
@@ -17,10 +25,10 @@
 }
 
 .logo {
+    font-family: 'Pretendard-Regular', sans-serif;
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 20px;
-    font-family: 'GowunBatang-Regular', serif;
 }
 
 /* 입력 폼 영역 */
@@ -140,6 +148,7 @@
   }
 
 .sectionTitle {
+    font-family: 'Pretendard-Regular', sans-serif;
     color: white;
     font-size: 18px;
     font-weight: bold;
