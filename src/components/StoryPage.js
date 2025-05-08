@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import './StoryPage.css';
 import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const StoryPage = ({ pages, title }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const audioRef = useRef(null);
+  const navigate = useNavigate(); // Initialize navigate hook
 
   const currentAudio = pages[currentPage]?.audio;
 
@@ -21,6 +23,11 @@ const StoryPage = ({ pages, title }) => {
     }
   };
 
+  // Function to navigate back to the home page
+  const handleGoHome = () => {
+    navigate("/"); // Redirect to home page
+  };
+
   return (
     <div className="story-page book-view">
       <div className="story-title-container">
@@ -31,16 +38,18 @@ const StoryPage = ({ pages, title }) => {
           key={currentPage}
           timeout={300}
           classNames="slide"
-          >
-      <PageSection
-        index={currentPage}
-        {...pages[currentPage]}
-        currentPage={currentPage}
-        totalPages={pages.length}
-        setCurrentPage={setCurrentPage}
-      />
-      </CSSTransition>
+        >
+          <PageSection
+            index={currentPage}
+            {...pages[currentPage]}
+            currentPage={currentPage}
+            totalPages={pages.length}
+            setCurrentPage={setCurrentPage}
+          />
+        </CSSTransition>
       </SwitchTransition>
+      {/* Home Button */}
+      <button className="home-button" onClick={handleGoHome}>Home</button>
     </div>
   );
 };
@@ -108,6 +117,4 @@ const PageSection = ({ text, image, audio, index, currentPage, totalPages, setCu
   );
 };
 
-
 export default StoryPage;
-

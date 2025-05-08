@@ -175,6 +175,24 @@
   border-radius: 6px;
 }
 
+.home-button {
+  position: absolute; /* 또는 fixed, 둘 다 가능 */
+  bottom: 20px;
+  left: 20px;
+  background-color: #54BD95; /* 초록색 */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.home-button:hover {
+  background-color: #45a049;
+}
 
   
   
