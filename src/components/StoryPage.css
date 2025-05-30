@@ -1,14 +1,19 @@
+
+
+
 .story-title {
   font-family: 'GowunBatang-Regular', serif;
 }
 
 .story-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    font-family: 'GowunBatang-Regular', serif;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  padding: 20px; /* 유지 */
+}
+
   
   .story-content {
     width: 80%;
@@ -21,15 +26,22 @@
   }
   
   .story-image {
-    width: 400px; /* 가로 70px */
-    height: 400px; /* 세로 70px */
+    width: 500px; /* 가로 70px */
+    height: 500px; /* 세로 70px */
     object-fit: contain; /* 이미지가 잘리지 않고 전체가 보이도록 */
     border-radius: 5px; /* 모서리를 둥글게 */
   }
   
   .story-text {
-    margin-top: 20px;
-    font-family: 'GowunBatang-Regular', serif;
+      font-size: 1.8rem;
+      line-height: 1.8;
+      font-family: 'GowunBatang-Regular', serif;
+      color: #333;
+      padding: 1rem;
+      background-color: #fff8f0;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    
   }
   
   .story-text h2 {
@@ -91,18 +103,16 @@
   transition: all 300ms ease;
 }
 .book-spread {
+  flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: stretch;
-  margin: 20px auto;
+  margin: 0 auto;
   width: 90%;
-  max-width: 1000px;
-  aspect-ratio: 16/9;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  max-width: 1200px;
+  height: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
   border-radius: 12px;
-  overflow: hidden;
 }
+
 
 .page {
   flex: 1;
@@ -152,8 +162,8 @@
   justify-content: center;     /* ✅ 가운데 정렬 */
   align-items: center;
   gap: 16px;
-  margin-top: 30px;
-  margin-bottom: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   flex-wrap: wrap;  
 }
 
