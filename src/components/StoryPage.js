@@ -83,13 +83,6 @@ const PageSection = ({ text, image, audio, index, currentPage, totalPages, setCu
       {/* 왼쪽 페이지 */}
       <div className="page left-page">
         <img className="story-image" src={image} alt={`Page ${index + 1}`} />
-      </div>
-
-      {/* 오른쪽 페이지 */}
-      <div className="page right-page">
-        <h2>{index + 1}장</h2>
-        <p className="story-text">{text}</p>
-
         {audio && (
           <>
             <button className="audio-button" onClick={handleAudioClick}>
@@ -99,6 +92,14 @@ const PageSection = ({ text, image, audio, index, currentPage, totalPages, setCu
           </>
         )}
 
+      </div>
+
+      {/* 오른쪽 페이지 */}
+      <div className="page right-page">
+        <h2>{index + 1}장</h2>
+        <p className="story-text">{text}</p>
+
+        
         <div className="navigation-buttons">
           <button onClick={goPrev} disabled={currentPage === 0}>
             ⬅ 이전

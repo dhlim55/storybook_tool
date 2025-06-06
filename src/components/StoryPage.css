@@ -8,10 +8,10 @@
 .story-page {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: auto;
   width: 100vw;
   overflow: hidden;
-  padding: 20px; /* 유지 */
+  padding: 20px; 
 }
 
   
@@ -33,7 +33,7 @@
   }
   
   .story-text {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       line-height: 1.8;
       font-family: 'GowunBatang-Regular', serif;
       color: #333;
@@ -125,9 +125,11 @@
   background-color: #f4f4f4;
   border-right: 1px solid #ddd;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
 }
+
 
 .left-page img.story-image {
   max-width: 100%;
